@@ -1,0 +1,955 @@
+:root {
+  --primary: #ff1744;
+  --secondary: #ff6090;
+  --accent: #ffd700;
+  --dark: #2d1b2e;
+  --light: #fff5f8;
+  --cream: #faf8f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(135deg, #fef9f0 0%, #ffe8f0 50%, #fff5f8 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== FLOATING HEARTS BACKGROUND ===== */
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart-float {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.08;
+  animation: floatHeart 20s infinite ease-in-out;
+}
+
+.heart-float::before {
+  content: "❤️";
+}
+
+.heart-float:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+.heart-float:nth-child(2) {
+  left: 30%;
+  animation-delay: 3s;
+  animation-duration: 22s;
+}
+.heart-float:nth-child(3) {
+  left: 50%;
+  animation-delay: 6s;
+  animation-duration: 20s;
+}
+.heart-float:nth-child(4) {
+  left: 70%;
+  animation-delay: 9s;
+  animation-duration: 19s;
+}
+.heart-float:nth-child(5) {
+  left: 85%;
+  animation-delay: 12s;
+  animation-duration: 21s;
+}
+.heart-float:nth-child(6) {
+  left: 15%;
+  animation-delay: 15s;
+  animation-duration: 17s;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0.5);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) scale(1);
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(0.5);
+  }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== COLLAGE GRID ===== */
+.collage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  position: relative;
+  margin-top: 60px;
+}
+
+/* ===== MEDIA ITEMS (POLAROID STYLE) ===== */
+.media-item {
+  background: white;
+  padding: 15px;
+  padding-bottom: 60px;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+.media-item:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow:
+    0 5px 15px rgba(255, 23, 68, 0.2),
+    0 20px 40px rgba(255, 23, 68, 0.15);
+  z-index: 10;
+}
+
+/* Staggered pop-in animation */
+.item-1 {
+  animation-delay: 0.1s;
+}
+.item-2 {
+  animation-delay: 0.2s;
+}
+.item-3 {
+  animation-delay: 0.4s;
+}
+.item-4 {
+  animation-delay: 0.5s;
+}
+.item-5 {
+  animation-delay: 0.6s;
+}
+.item-6 {
+  animation-delay: 0.7s;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Different rotations for authentic scattered look */
+.item-1 {
+  transform: rotate(-4deg);
+}
+.item-2 {
+  transform: rotate(3deg);
+}
+.item-3 {
+  transform: rotate(-2deg);
+}
+.item-4 {
+  transform: rotate(5deg);
+}
+.item-5 {
+  transform: rotate(-3deg);
+}
+.item-6 {
+  transform: rotate(2deg);
+}
+
+.media-item img,
+.media-item video {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #f5f5f5;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Covered By Your Grace", cursive;
+  font-size: 18px;
+  color: var(--dark);
+  text-align: center;
+  width: 90%;
+}
+
+/* Video placeholder */
+.video-container {
+  position: relative;
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(135deg, #ffeef3 0%, #ffe0e8 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 2px solid #f5f5f5;
+}
+
+.play-icon {
+  font-size: 48px;
+  opacity: 0.5;
+}
+
+.video-placeholder p {
+  font-size: 14px;
+  color: #999;
+}
+
+/* ===== PROPOSAL CARD (CENTER) ===== */
+.proposal-card {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  background: linear-gradient(135deg, #fff 0%, #fff5f8 100%);
+  border: 3px solid var(--primary);
+  border-radius: 30px;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  box-shadow:
+    0 10px 40px rgba(255, 23, 68, 0.2),
+    0 0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 0 15px rgba(255, 23, 68, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: cardPulse 3s ease-in-out infinite;
+}
+
+@keyframes cardPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 40px rgba(255, 23, 68, 0.2),
+      0 0 0 10px rgba(255, 255, 255, 0.5),
+      0 0 0 15px rgba(255, 23, 68, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 10px 50px rgba(255, 23, 68, 0.3),
+      0 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 0 20px rgba(255, 23, 68, 0.2);
+  }
+}
+
+/* Sparkles around proposal */
+.sparkle {
+  position: absolute;
+  font-size: 24px;
+  animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+  top: 20px;
+  left: 20px;
+  animation-delay: 0s;
+}
+.sparkle-2 {
+  top: 20px;
+  right: 20px;
+  animation-delay: 0.5s;
+}
+.sparkle-3 {
+  bottom: 20px;
+  left: 20px;
+  animation-delay: 1s;
+}
+.sparkle-4 {
+  bottom: 20px;
+  right: 20px;
+  animation-delay: 1.5s;
+}
+
+@keyframes sparkleFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+.proposal-title {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--primary);
+  text-shadow: 2px 2px 0 rgba(255, 23, 68, 0.1);
+  margin-bottom: 10px;
+}
+
+/* ===== BUTTONS ===== */
+.buttons-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.yes-button,
+.no-button {
+  position: relative;
+  padding: 18px 50px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.yes-button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  box-shadow:
+    0 4px 15px rgba(255, 23, 68, 0.4),
+    0 8px 25px rgba(255, 23, 68, 0.2);
+  transform: scale(1);
+  animation: yesButtonPulse 2s ease-in-out infinite;
+}
+
+@keyframes yesButtonPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.yes-button:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 6px 20px rgba(255, 23, 68, 0.5),
+    0 12px 35px rgba(255, 23, 68, 0.3);
+}
+
+.yes-button:active {
+  transform: scale(1.05);
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20%,
+  100% {
+    left: 100%;
+  }
+}
+
+.no-button {
+  background: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.5;
+  position: relative;
+}
+
+.no-button:hover .not-clickable-hint {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+.btn-text.crossed {
+  text-decoration: line-through;
+  position: relative;
+}
+
+.not-clickable-hint {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: var(--dark);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  margin-bottom: 10px;
+}
+
+.not-clickable-hint::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--dark);
+}
+
+/* ===== SECRET MESSAGE ===== */
+.secret-message {
+  font-family: "Covered By Your Grace", cursive;
+  font-size: 28px;
+  color: var(--primary);
+  opacity: 0;
+  transform: scale(0) rotate(-10deg);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.secret-message.show {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* ===== DECORATIVE DOODLES ===== */
+.doodle {
+  position: absolute;
+  font-size: 40px;
+  opacity: 0.15;
+  pointer-events: none;
+  animation: doodleFloat 4s ease-in-out infinite;
+}
+
+.doodle-1 {
+  top: 100px;
+  left: 5%;
+  animation-delay: 0s;
+}
+.doodle-2 {
+  top: 200px;
+  right: 8%;
+  animation-delay: 1s;
+}
+.doodle-3 {
+  bottom: 150px;
+  left: 10%;
+  animation-delay: 2s;
+}
+.doodle-4 {
+  bottom: 100px;
+  right: 5%;
+  animation-delay: 3s;
+}
+
+@keyframes doodleFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+/* ===== CELEBRATION OVERLAY ===== */
+.celebration-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 23, 68, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.celebration-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.celebration-content {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+.celebration-title {
+  font-family: "Playfair Display", serif;
+  font-size: 72px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  animation: celebrationBounce 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes celebrationBounce {
+  0% {
+    transform: scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.celebration-text {
+  font-size: 32px;
+  font-weight: 500;
+  animation: celebrationFade 1s ease 0.3s backwards;
+}
+
+@keyframes celebrationFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== CONFETTI ===== */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  top: -10px;
+  animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .collage-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .proposal-card {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 40px 25px;
+    margin: 20px 0;
+  }
+
+  .proposal-title {
+    font-size: 40px;
+  }
+
+  .media-item img,
+  .media-item video,
+  .video-placeholder {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .collage-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 20px;
+  }
+
+  .proposal-card {
+    padding: 35px 25px;
+    border-radius: 25px;
+    margin: 10px 0;
+  }
+
+  .proposal-title {
+    font-size: 36px;
+  }
+
+  .yes-button,
+  .no-button {
+    font-size: 18px;
+    padding: 16px 45px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .media-item {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .media-item img,
+  .media-item video,
+  .video-placeholder {
+    height: 300px;
+  }
+
+  .celebration-title {
+    font-size: 52px;
+    padding: 0 20px;
+  }
+
+  .celebration-text {
+    font-size: 26px;
+    padding: 0 20px;
+  }
+
+  .doodle {
+    font-size: 32px;
+  }
+
+  .sparkle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 10px;
+  }
+
+  .proposal-card {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .proposal-title {
+    font-size: 32px;
+  }
+
+  .yes-button,
+  .no-button {
+    font-size: 16px;
+    padding: 14px 35px;
+  }
+
+  .buttons-container {
+    gap: 15px;
+  }
+
+  .media-item {
+    padding-bottom: 55px;
+  }
+
+  .polaroid-caption {
+    font-size: 16px;
+    bottom: 12px;
+  }
+
+  .media-item img,
+  .media-item video,
+  .video-placeholder {
+    height: 280px;
+  }
+
+  .celebration-title {
+    font-size: 40px;
+  }
+
+  .celebration-text {
+    font-size: 22px;
+  }
+
+  .secret-message {
+    font-size: 24px;
+  }
+
+  .doodle {
+    font-size: 28px;
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 380px) {
+  .proposal-title {
+    font-size: 28px;
+  }
+
+  .media-item img,
+  .media-item video,
+  .video-placeholder {
+    height: 240px;
+  }
+
+  .celebration-title {
+    font-size: 36px;
+  }
+
+  .celebration-text {
+    font-size: 20px;
+  }
+}
+
+/* ===== LIGHTBOX MODAL ===== */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: lightboxZoom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes lightboxZoom {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightbox-media-container {
+  position: relative;
+  max-width: 100%;
+  max-height: calc(90vh - 100px);
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px rgba(255, 107, 157, 0.3);
+}
+
+.lightbox-media-container img,
+.lightbox-media-container video {
+  max-width: 100%;
+  max-height: calc(90vh - 130px);
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+#lightboxImage,
+#lightboxVideo {
+  display: none;
+}
+
+#lightboxImage.active,
+#lightboxVideo.active {
+  display: block;
+}
+
+.lightbox-caption {
+  font-family: "Covered By Your Grace", cursive;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  background: rgba(255, 107, 157, 0.9);
+  padding: 12px 30px;
+  border-radius: 25px;
+  max-width: 80%;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  color: var(--primary);
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: var(--primary);
+  color: white;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--primary);
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-nav:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: var(--primary);
+  color: white;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-content {
+    max-width: 95vw;
+  }
+
+  .lightbox-media-container {
+    padding: 10px;
+  }
+
+  .lightbox-caption {
+    font-size: 20px;
+    padding: 10px 25px;
+  }
+
+  .lightbox-close {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .lightbox-nav {
+    width: 45px;
+    height: 45px;
+    font-size: 30px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lightbox-caption {
+    font-size: 18px;
+    padding: 8px 20px;
+    max-width: 90%;
+  }
+
+  .lightbox-close {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+}
